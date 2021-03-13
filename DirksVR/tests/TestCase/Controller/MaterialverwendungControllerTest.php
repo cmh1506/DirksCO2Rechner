@@ -1,17 +1,16 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\UsersController;
+use App\Controller\MaterialverwendungController;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
 
 /**
- * App\Controller\UsersController Test Case
+ * App\Controller\MaterialverwendungController Test Case
  *
- * @uses \App\Controller\UsersController
+ * @uses \App\Controller\MaterialverwendungController
  */
-class UsersControllerTest extends TestCase
+class MaterialverwendungControllerTest extends TestCase
 {
     use IntegrationTestTrait;
 
@@ -21,9 +20,11 @@ class UsersControllerTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.Users',
-        'app.Roles',
+        'app.Materialverwendung',
         'app.Verpackung',
+        'app.Material',
+        'app.Recyclingmethode',
+        'app.Verarbeitung',
     ];
 
     /**
@@ -33,12 +34,7 @@ class UsersControllerTest extends TestCase
      */
     public function testIndex()
     {
-        $usersTable = TableRegistry::getTableLocator()->get('Users');
-        $user = $usersTable->newEntity();
-        $user->email = "cmh1506@yahoo.de";
-        $user->password = "Huhu";
-        $user->role_id = "1";
-        $usersTable->save($user);
+        $this->markTestIncomplete('Not implemented yet.');
     }
 
     /**

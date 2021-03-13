@@ -1,0 +1,224 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd" changeLogId="8f451802-fbdf-4b38-a1a8-1dc460636475">
+    <changeSet author="claus (generated)" id="1612907486679-1">
+        <createTable tableName="department">
+            <column name="id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="claus (generated)" id="1612907486679-2">
+        <createTable tableName="material">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="kennung" type="VARCHAR(15)"/>
+            <column defaultValueComputed="NULL" name="gueltigAb" type="date"/>
+            <column defaultValueComputed="NULL" name="gueltigBis" type="date"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="claus (generated)" id="1612907486679-3">
+        <createTable tableName="materialverwendung">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="verpackung_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="material_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="recyclingmethode_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="verarbeitung_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="menge" type="FLOAT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="flaeche" type="FLOAT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="recyclingquote" type="FLOAT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="claus (generated)" id="1612907486679-4">
+        <createTable tableName="recyclingmethode">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="claus (generated)" id="1612907486679-5">
+        <createTable tableName="roles">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="NULL" name="created" type="datetime"/>
+            <column defaultValueComputed="NULL" name="modified" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="claus (generated)" id="1612907486679-6">
+        <createTable tableName="users">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="NULL" name="created" type="datetime"/>
+            <column defaultValueComputed="NULL" name="modified" type="datetime"/>
+            <column defaultValueNumeric="1" name="role_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="claus (generated)" id="1612907486679-7">
+        <createTable tableName="verarbeitung">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="claus (generated)" id="1612907486679-8">
+        <createTable tableName="verpackung">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="bemerkung" type="TEXT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="claus (generated)" id="1612907486679-9">
+        <createIndex indexName="material_id" tableName="materialverwendung">
+            <column name="material_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="claus (generated)" id="1612907486679-10">
+        <createIndex indexName="recyclingmethode_id" tableName="materialverwendung">
+            <column name="recyclingmethode_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="claus (generated)" id="1612907486679-11">
+        <createIndex indexName="role_id" tableName="users">
+            <column defaultValueNumeric="1" name="role_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="claus (generated)" id="1612907486679-12">
+        <createIndex indexName="user_id" tableName="verpackung">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="claus (generated)" id="1612907486679-13">
+        <createIndex indexName="verarbeitung_id" tableName="materialverwendung">
+            <column name="verarbeitung_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="claus (generated)" id="1612907486679-14">
+        <createIndex indexName="verpackung_id" tableName="materialverwendung">
+            <column name="verpackung_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="claus (generated)" id="1612907486679-15">
+        <addForeignKeyConstraint baseColumnNames="material_id" baseTableName="materialverwendung" constraintName="materialverwendung_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="material" validate="true"/>
+    </changeSet>
+    <changeSet author="claus (generated)" id="1612907486679-16">
+        <addForeignKeyConstraint baseColumnNames="recyclingmethode_id" baseTableName="materialverwendung" constraintName="materialverwendung_ibfk_2" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="recyclingmethode" validate="true"/>
+    </changeSet>
+    <changeSet author="claus (generated)" id="1612907486679-17">
+        <addForeignKeyConstraint baseColumnNames="verarbeitung_id" baseTableName="materialverwendung" constraintName="materialverwendung_ibfk_3" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="verarbeitung" validate="true"/>
+    </changeSet>
+    <changeSet author="claus (generated)" id="1612907486679-18">
+        <addForeignKeyConstraint baseColumnNames="verpackung_id" baseTableName="materialverwendung" constraintName="materialverwendung_ibfk_4" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="verpackung" validate="true"/>
+    </changeSet>
+    <changeSet author="claus (generated)" id="1612907486679-19">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="users" constraintName="users_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="roles" validate="true"/>
+    </changeSet>
+    <changeSet author="claus (generated)" id="1612907486679-20">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="verpackung" constraintName="verpackung_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+	<changeSet author="claus" id="1612907486679-21">
+		<dropTable tableName= "department"/>
+	</changeSet>
+	<changeSet author="claus" id="1612907486679-22">
+		<dropTable tableName= "department"/>
+	</changeSet>
+	<changeSet author="claus" id="1612907486679-23">
+		<addColumn 
+				tableName="materialverwendung" >
+			<column name="kennung"
+				afterColumn="id" 		
+				type="date"/>
+			<column name="gueltigAb"
+				afterColumn="kennung" 		
+				type="date"/>  
+			<column name="gueltigBis"
+				afterColumn="gueltigAb" 		
+				type="date"/> 
+		</addColumn>  
+	</changeSet>
+	<changeSet author="claus" id="1612907486679-24">
+		<addColumn 
+				tableName="recyclingmethode" >
+			<column name="kennung"
+				afterColumn="id" 		
+				type="varchar(15)"/>
+			<column name="gueltigAb"
+				afterColumn="kennung" 		
+				type="date"/>  
+			<column name="gueltigBis"
+				afterColumn="gueltigAb" 		
+				type="date"/> 
+		</addColumn>  
+	</changeSet>
+	<changeSet author="claus" id="1612907486679-25">
+		<addColumn 
+				tableName="verarbeitung" >
+			<column name="kennung"
+				afterColumn="id" 		
+				type="varchar(15)"/>
+			<column name="gueltigAb"
+				afterColumn="kennung" 		
+				type="date"/>  
+			<column name="gueltigBis"
+				afterColumn="gueltigAb" 		
+				type="date"/> 
+		</addColumn>  
+	</changeSet>
+	<changeSet author="claus" id="1612907486679-26">
+		<addColumn 
+				tableName="verpackung" >
+			<column name="kennung"
+				afterColumn="id" 		
+				type="varchar(15)"/>
+			<column name="gueltigAb"
+				afterColumn="kennung" 		
+				type="date"/>  
+			<column name="gueltigBis"
+				afterColumn="gueltigAb" 		
+				type="date"/> 
+		</addColumn>  
+	</changeSet>
+	<changeSet  author="claus"  id="1612907486679-27">  
+    <modifyDataType   
+            columnName="kennung"  
+            newDataType="varchar(15)" 
+            tableName="materialverwendung"/>  
+</changeSet>
+</databaseChangeLog>

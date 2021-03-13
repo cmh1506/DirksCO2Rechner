@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Users Controller
@@ -19,6 +20,8 @@ class UsersController extends AppController
      */
     public function index()
     {
+        
+        
         $this->paginate = [
             'contain' => ['Roles'],
         ];
@@ -36,6 +39,7 @@ class UsersController extends AppController
      */
     public function view($id = null)
     {
+        
         $user = $this->Users->get($id, [
             'contain' => ['Roles', 'Verpackung'],
         ]);
@@ -50,6 +54,12 @@ class UsersController extends AppController
      */
     public function add()
     {
+        $usersTable = TableRegistry::getTableLocator()->get('Users');
+        $user = $usersTable->newEntity();
+        $user->email = "cmh1507@yahoo.de";
+        $user->password = "Huhu";
+        $user->role_id = "1";
+        $usersTable->save($user);
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());

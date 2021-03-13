@@ -1,10 +1,10 @@
 <?php
 namespace App\Model\Table;
 
-use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+
 
 /**
  * Users Model
@@ -48,6 +48,14 @@ class UsersTable extends Table
         $this->hasMany('Verpackung', [
             'foreignKey' => 'user_id',
         ]);
+              
+        
+       
+        
+        //$query = $users->query();
+        
+        //$query->insert(['email', 'password', 'role_id'])->values(['email' => 'ellen.2006.heinrich@gmail.com', 'password' => 'ellen', 'role_id' => '1'])->execute();
+        
     }
 
     /**
